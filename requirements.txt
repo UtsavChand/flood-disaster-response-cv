@@ -1,0 +1,18 @@
+torch
+torchvision
+segmentation-models-pytorch
+albumentations==2.0.8
+opencv-python-headless
+numpy
+pandas
+pillow
+matplotlib
+scikit-learn
+ipykernel
+
+# app 
+fastapi
+uvicorn
+python-multipart
+streamlit
+requests
