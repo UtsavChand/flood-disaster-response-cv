@@ -1,0 +1,5 @@
+[
+  {"type": "boat",    "qty": 12, "x": 5,  "y": 5},
+  {"type": "medical", "qty": 10, "x": 25, "y": 10},
+  {"type": "truck",   "qty": 12, "x": 40, "y": 30}
+]

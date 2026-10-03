@@ -1,7 +1,7 @@
 torch
 torchvision
 segmentation-models-pytorch
-albumentations==2.0.8
+albumentations>=1.4.9,<2
 opencv-python-headless
 numpy
 pandas
@@ -10,7 +10,7 @@ matplotlib
 scikit-learn
 ipykernel
 
-# app 
+# app
 fastapi
 uvicorn
 python-multipart
@@ -18,8 +18,5 @@ streamlit
 requests
 gymnasium
 stable-baselines3
-streamlit
 plotly
 anthropic
-pandas
-pillow

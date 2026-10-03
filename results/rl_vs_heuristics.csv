@@ -1,0 +1,6 @@
+policy,coverage,severity_weighted_coverage,worst_zone_coverage,mean_travel_km,wasted_units
+largest_need,0.294,0.316,0.0,30.307,0.0
+nearest_first,0.294,0.278,0.0,17.848,0.0
+ppo,0.27,0.29,0.0,29.461,2.495
+random,0.294,0.269,0.116,27.799,0.0
+severity_first,0.294,0.32,0.0,30.32,0.0

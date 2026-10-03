@@ -6,7 +6,7 @@ from PIL import Image
 
 
 def build_zones(masks, seed=42):
-    """masks: dict name -> binary mask array (use model predictions or ground truth)."""
+    """masks: dict name -> binary mask array (model predictions or ground truth)."""
     rng = np.random.default_rng(seed)
     rows = []
     for i, (name, m) in enumerate(masks.items()):
@@ -19,6 +19,20 @@ def build_zones(masks, seed=42):
             x=round(float(rng.uniform(0, 50)), 1), y=round(float(rng.uniform(0, 50)), 1),
         ))
     return pd.DataFrame(rows)
+
+
+def upsert_zone(zones, zone_id, flood_frac, source="upload", **attrs):
+    zones = zones.copy()
+    if zone_id in set(zones.zone_id):
+        i = zones.index[zones.zone_id == zone_id][0]
+        zones.loc[i, "flood_frac"] = round(flood_frac, 3)
+        zones.loc[i, "source"] = source
+        for k, v in attrs.items():
+            zones.loc[i, k] = v
+    else:
+        row = dict(zone_id=zone_id, source=source, flood_frac=round(flood_frac, 3), **attrs)
+        zones = pd.concat([zones, pd.DataFrame([row])], ignore_index=True)
+    return zones
 
 
 if __name__ == "__main__":
