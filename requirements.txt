@@ -16,3 +16,10 @@ uvicorn
 python-multipart
 streamlit
 requests
+gymnasium
+stable-baselines3
+streamlit
+plotly
+anthropic
+pandas
+pillow
