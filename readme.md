@@ -13,7 +13,11 @@
 | **Report** | This document (Background, Methodology, Results, Visuals below) |
 
 <p align="center">
+<<<<<<< Updated upstream
   <img src="results/figures/prediction_overlay.png" width="95%" alt="Original image, predicted flood mask, and overlay showing 27.0% flooded"><br>
+=======
+  <img src="results/figures/prediction_overlay.png" width="95%" alt="Original image, predicted flood mask, and overlay showing the flooded percentage"><br>
+>>>>>>> Stashed changes
   <em>Model output on an unseen drone image: original, predicted mask, blue overlay and the flooded percentage.</em>
 </p>
 
@@ -74,7 +78,11 @@ Train a segmentation network that reaches strong overlap with human-drawn flood 
 
 1. **Image/mask size mismatches.** For 7 stems the mask has a different resolution from its image. Some are swapped pairs (14 and 15, 2052 and 2053: image 14 matches mask 15 and vice versa). Training on these would silently teach the network wrong labels, so they were removed.
 
+<<<<<<< Updated upstream
    <p align="center"><img src="results/figures/mismatch_example.png" width="45%" alt="Mismatched image and mask"></p>
+=======
+   <p align="center"><img src="results/figures/mismatch_example.png" width="60%" alt="Mismatched image and mask"></p>
+>>>>>>> Stashed changes
 
 2. **Masks are not truly binary.** The masks were saved with anti-aliasing, so besides 0 and 255 they contain intermediate grays. In the first mask we inspected, 114,928 pixels were 255, 361,968 were 0, and **15,147 pixels (about 3.1%) were in between**. We binarise with `mask > 127`.
 
@@ -225,11 +233,19 @@ The best checkpoint (epoch 21) is slightly better than the final epoch (0.827 vs
 
 ### 4.3 Sample outputs
 
+<<<<<<< Updated upstream
 **Prediction on an unseen image.** Flooded area estimated at 27.0%:
 
 <p align="center"><img src="results/figures/prediction_overlay.png" width="95%" alt="Prediction overlay"></p>
 
 **Ground truth vs prediction on a test-split image** (IoU = 0.832, close to the overall validation IoU):
+=======
+**Prediction on an unseen image.** The flooded percentage is shown in the figure title:
+
+<p align="center"><img src="results/figures/prediction_overlay.png" width="95%" alt="Prediction overlay"></p>
+
+**Ground truth vs prediction on a test-split image** (the per-image IoU is shown in the figure title):
+>>>>>>> Stashed changes
 
 <p align="center"><img src="results/figures/test_gt_vs_pred.png" width="95%" alt="Ground truth versus prediction"></p>
 
@@ -237,9 +253,17 @@ The best checkpoint (epoch 21) is slightly better than the final epoch (0.827 vs
 
 | Model | Test IoU | Test Dice |
 |---|---|---|
+<<<<<<< Updated upstream
 | U-Net (ResNet34) | TBD | TBD |
 | DeepLabV3+ (ResNet34) | TBD | TBD |
 
+=======
+| U-Net (ResNet34) | **0.792** | **0.884** |
+| DeepLabV3+ (ResNet34) | TBD | TBD |
+
+On the 43 test images the U-Net also reaches precision 0.868 and recall 0.900. Test IoU (0.792) is a little lower than validation IoU (0.827), which is expected: the checkpoint was selected on the validation set, while the test set was never used for any decision. Recall is again higher than precision, so the model still errs on the side of over-marking water.
+
+>>>>>>> Stashed changes
 > Validation numbers above were used to choose the checkpoint. The held-out **test split (43 images)** is evaluated once, at the end, to give an unbiased estimate.
 
 ---
@@ -291,6 +315,10 @@ src/
   train.py             # training loop, loss, metrics
   predict.py           # load_model, predict, predict_proba
 checkpoints/           # trained weights (NOT in Git, download separately)
+<<<<<<< Updated upstream
+=======
+make_figures.py        # regenerates every figure in results/
+>>>>>>> Stashed changes
 results/
   unet_history.csv     # per-epoch metrics
   unet_curves.png      # training curves
@@ -355,6 +383,15 @@ python -m src.train --model deeplab --epochs 30   # comparison model
 
 Training overwrites `checkpoints/<model>_best.pth`; curves and logs are saved in `results/`.
 
+<<<<<<< Updated upstream
+=======
+### Regenerate the report figures
+
+```bash
+python make_figures.py
+```
+
+>>>>>>> Stashed changes
 ### Team rules
 
 - Work on branches and merge through pull requests.
